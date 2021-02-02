@@ -29,25 +29,25 @@ public class Main {
          catalog = new MockMovieLoader().load();
          movieDisplay = new MockMovieDisplay();
          commands = new HashMap();
-         commands.put("Score",new OrderByScoreCommand(movieDisplay));
-         commands.put("Views",new OrderByViewsCommand(movieDisplay));
-         commands.put("Newest", new OrderByNewestCommand(movieDisplay));
-         commands.put("Genre", new OrderByGenreCommand(movieDisplay)); 
-         commands.put("Select", new SelectMovieCommand());
-         commands.put("Exit", new ExitCommand());
+         commands.put("score",new OrderByScoreCommand(movieDisplay));
+         commands.put("views",new OrderByViewsCommand(movieDisplay));
+         commands.put("newest", new OrderByNewestCommand(movieDisplay));
+         commands.put("genre", new OrderByGenreCommand(movieDisplay)); 
+         commands.put("select", new SelectMovieCommand());
+         commands.put("exit", new ExitCommand());
          
      }
      
      private void execute() {
         System.out.println("Nuestras películas: ");
         movieDisplay.display(catalog);
-        System.out.println("\n" + "Posibles comandos: Score - Views - Newest - Genre - Select - Exit" + "\n");
+        System.out.println("\n" + "Posibles comandos: score - views - newest - genre - select - exit" + "\n");
         while (true) {
             commands.getOrDefault(input(), null).execute(catalog);
         } 
      }
     private String input() {
         
-        return scanner.next(); 
+        return scanner.next().toLowerCase(); 
     }
 }

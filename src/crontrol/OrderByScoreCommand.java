@@ -20,13 +20,18 @@ public class OrderByScoreCommand implements Command{
     public void execute(List<Movie> movies) {
         Movie max;
         for (int i = 0; i < movies.size(); i++) {
-            max = movies.get(0);
+            if(!this.movie.contains(movies.get(i))){
+                max = movies.get(i);
+                
                 for (int j = 0; j < movies.size(); j++) {
                     if (max.getScore() < movies.get(j).getScore() && !this.movie.contains(movies.get(j))){
                         max = movies.get(j);
                     }
                 }
                 this.movie.add(max);
+                i = 0;
+            } 
+
         }
         System.out.println("\n" + "Movies ordered by Score");
         movieDisplay.display(this.movie);

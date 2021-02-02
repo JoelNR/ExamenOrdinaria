@@ -17,7 +17,23 @@ public class OrderByNewestCommand implements Command{
     
     @Override
     public void execute(List<Movie> movies) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Movie max;
+        for (int i = 0; i < movies.size(); i++) {
+            if(!this.movie.contains(movies.get(i))){
+                max = movies.get(i);
+                
+                for (int j = 0; j < movies.size(); j++) {
+                    if (Integer.parseInt(max.getYear()) < Integer.parseInt(movies.get(j).getYear()) && !this.movie.contains(movies.get(j))){
+                        max = movies.get(j);
+                    }
+                }
+                this.movie.add(max);
+                i = 0;
+            } 
+
+        }
+        System.out.println("\n" + "Movies ordered by Year");
+        movieDisplay.display(this.movie);
     }
 
 }
